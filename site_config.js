@@ -1,7 +1,7 @@
-export let navStructure = [
+export const navStructure = [
   {
     "label": "Introduction",
-    "pathname": "introduction"
+    "pathname": "."
   },
   {
     "label": "Modding",

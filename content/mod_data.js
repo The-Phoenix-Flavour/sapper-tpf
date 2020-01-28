@@ -1,15 +1,3 @@
-import { writable } from 'svelte/store';
-
-export const categories = [
-  "quests",
-  "visual"
-]
-
-export const instructionList = [
-  "download",
-  "fomod"
-]
-
 export const modList = [
   {
     id: "ebqo",

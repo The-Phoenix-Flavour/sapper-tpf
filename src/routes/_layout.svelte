@@ -2,6 +2,9 @@
   import Title from "../components/Title.svelte";
   import Nav from "../components/Nav.svelte";
 
+  // FIXME: integrate this CSS file properly
+  import "../../static/common.css";
+
   export let segment;
 </script>
 

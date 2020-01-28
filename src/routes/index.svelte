@@ -1,15 +1,16 @@
 <script context="module">
-  export async function preload({ params, query }) {
+  // TODO: remove posts code if unneded later on
+  /*export async function preload({ params, query }) {
     return this.fetch(`index.json`)
       .then(r => r.json())
       .then(posts => {
         return { posts };
       });
-  }
+  }*/
 </script>
 
 <script>
-  export let posts;
+  //export let posts;
 </script>
 
 <style>

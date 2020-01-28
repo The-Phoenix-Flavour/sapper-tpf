@@ -10,10 +10,7 @@
   }
 
   ul {
-    margin: 0;
     margin-top: 3rem;
-    padding: 0;
-    list-style: none;
     border-top: 1px solid grey;
   }
 
@@ -22,17 +19,13 @@
     padding-bottom: 0.4rem;
     border-bottom: 1px solid grey;
   }
-
-  a {
-    text-decoration: none;
-  }
 </style>
 
 <div id="side-menu">
   <img src="img/logo.svg" alt="Docs" class="logo" />
 
   <!-- This is where the navlinks are generated -->
-  <ul class="menu">
+  <ul class="clean-menu">
     <!--
       <li>
         <a class:selected={segment === undefined} href=".">home</a>
@@ -41,6 +34,7 @@
     {#each navStructure as navItem}
       <li>
         <a
+          class="clean-link"
           class:selected={segment === navItem.pathname}
           href={navItem.pathname}>
           {navItem.label}
