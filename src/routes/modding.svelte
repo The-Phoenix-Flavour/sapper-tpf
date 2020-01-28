@@ -34,7 +34,18 @@
   }
 
   #step-controls {
+    margin-top: 4.5rem;
     text-align: center;
+  }
+
+  .item-block {
+    margin-right: 1rem;
+    padding: 1rem;
+    border-radius: 3px;
+    border: none;
+    box-shadow: rgba(46, 41, 51, 0.08) 0px 2px 4px,
+      rgba(71, 63, 79, 0.08) 0px 2px 4px;
+    background-color: #f5f5f5;
   }
 </style>
 
@@ -60,14 +71,16 @@
 
   <!-- This is the selection menu for navigating the steps -->
   <div id="step-controls">
-    <button on:click|preventDefault={prevStep}>back</button>
+    <button class="item-block" on:click|preventDefault={prevStep}>back</button>
 
-    <select bind:value={currentCategory}>
+    <select class="item-block" bind:value={currentCategory}>
       {#each modCategories as category, i}
         <option value={category}>{i + 1 + ' - ' + category}</option>
       {/each}
     </select>
 
-    <button on:click|preventDefault={nextStep}>forward</button>
+    <button class="item-block" on:click|preventDefault={nextStep}>
+      forward
+    </button>
   </div>
 </section>

@@ -17,6 +17,7 @@
   <h2>{mod.name}</h2>
 
   {#each modInstructions as instructionSet}
+    <!-- Adds any instruction categories associated with the mod -->
     {#if instructionSet in mod}
       <h3>
         {instructionSet.charAt(0).toUpperCase() + instructionSet.substr(1)}

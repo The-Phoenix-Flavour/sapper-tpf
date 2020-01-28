@@ -22,5 +22,12 @@ export const modList = [
       "Main Files – A. Noble Skyrim – FULL PACK_2K",
       "Update Files – NSM – SMIM Patch"
     ]
+  },
+  {
+    id: "sro",
+    name: "Skyrim Realistic Overhaul (SRO)",
+    url: "https://www.moddb.com/mods/skyrim-realistic-overhaul",
+    category: "visual",
+    download: "This mod has already been installed."
   }
 ]
