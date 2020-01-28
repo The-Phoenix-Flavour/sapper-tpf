@@ -1,71 +1,51 @@
 <script>
   export let segment;
+  import { navStructure } from "../../site_config.js";
 </script>
 
 <style>
-  nav {
-    border-bottom: 1px solid rgba(255, 62, 0, 0.1);
-    font-weight: 300;
-    padding: 0 1em;
+  #side-menu {
+    background-color: #f9f9f9;
+    text-align: center;
   }
 
   ul {
     margin: 0;
+    margin-top: 3rem;
     padding: 0;
-  }
-
-  /* clearfix */
-  ul::after {
-    content: "";
-    display: block;
-    clear: both;
+    list-style: none;
+    border-top: 1px solid grey;
   }
 
   li {
-    display: block;
-    float: left;
-  }
-
-  .selected {
-    position: relative;
-    display: inline-block;
-  }
-
-  .selected::after {
-    position: absolute;
-    content: "";
-    width: calc(100% - 1em);
-    height: 2px;
-    background-color: rgb(255, 62, 0);
-    display: block;
-    bottom: -1px;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid grey;
   }
 
   a {
     text-decoration: none;
-    padding: 1em 0.5em;
-    display: block;
   }
 </style>
 
-<nav>
-  <ul>
-    <li>
-      <a class:selected={segment === undefined} href=".">home</a>
-    </li>
-    <li>
-      <a class:selected={segment === 'modding'} href="modding">Modding</a>
-    </li>
-    <li>
-      <a class:selected={segment === 'test'} href="test">test</a>
-    </li>
+<div id="side-menu">
+  <img src="img/logo.svg" alt="Docs" class="logo" />
 
-    <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
+  <!-- This is where the navlinks are generated -->
+  <ul class="menu">
     <!--
-    <li>
-      <a rel="prefetch" class:selected={segment === 'blog'} href="blog">blog</a>
-    </li>
-		-->
+      <li>
+        <a class:selected={segment === undefined} href=".">home</a>
+      </li>
+    -->
+    {#each navStructure as navItem}
+      <li>
+        <a
+          class:selected={segment === navItem.pathname}
+          href={navItem.pathname}>
+          {navItem.label}
+        </a>
+      </li>
+    {/each}
   </ul>
-</nav>
+</div>

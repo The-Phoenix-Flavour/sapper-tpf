@@ -1,10 +1,8 @@
 <script>
   import Title from "../components/Title.svelte";
   import Nav from "../components/Nav.svelte";
-  import Menu from "../components/Menu.svelte";
 
   export let segment;
-  console.log(segment);
 </script>
 
 <style>
@@ -27,8 +25,7 @@
 
 <div id="grid-wrapper">
   <Title />
-  <Menu {segment} />
-  <!--<Nav {segment} />-->
+  <Nav {segment} />
 
   <main>
     <slot />
