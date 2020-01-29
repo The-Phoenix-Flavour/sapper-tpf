@@ -1,51 +1,76 @@
 <script>
+  // Imports from packages
+  import Icon from "fa-svelte";
+  import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
+  import classNames from "classnames";
+
   // Import Components
+  import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
+  import { faAngleRight } from "@fortawesome/free-solid-svg-icons/faAngleRight";
   import Mod from "../components/Mod.svelte";
 
   // Import Data
-  import { modCategories, modInstructions } from "../../content/mod_config.js";
+  import { modInstructions } from "../../content/mod_config.js";
   import { modList } from "../../content/mod_data.js";
 
   // States
-  let currentCategory;
-  $: currentIndex = modCategories.indexOf(currentCategory);
-  $: filteredModList = modList.filter(mod => mod.category === currentCategory);
+  let currentStep = 0;
+  $: isBeginning = currentStep <= 0;
+  $: isEnd = currentStep >= modList.length - 1;
 
   // Bound Helper Functions
   function nextStep() {
-    // Passes to next category
-    if (currentIndex < modCategories.length - 1)
-      currentCategory = modCategories[currentIndex + 1];
+    // Moves to next Step
+    if (!isEnd) currentStep++;
   }
 
   function prevStep() {
-    // Passes to previous category
-    if (currentIndex > 0) currentCategory = modCategories[currentIndex - 1];
+    // Moves to previous Step
+    if (!isBeginning) currentStep--;
   }
 </script>
 
 <style>
-  #mods {
-    margin-top: 3rem;
-  }
-
   #step-title {
     text-align: center;
+    text-transform: capitalize;
   }
 
   #step-controls {
     margin-top: 4.5rem;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
 
-  .item-block {
-    margin-right: 1rem;
-    padding: 1rem;
-    border-radius: 3px;
-    border: none;
-    box-shadow: rgba(46, 41, 51, 0.08) 0px 2px 4px,
-      rgba(71, 63, 79, 0.08) 0px 2px 4px;
-    background-color: #f5f5f5;
+  /* Workround for browsers that don't have the gap property */
+  /* TODO: make this a rollback only if browser doesn't suppoer gap */
+  #step-controls > * + * {
+    margin-left: 1.5rem;
+  }
+
+  .hide-button {
+    visibility: hidden;
+  }
+
+  .select-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .select-fix {
+    padding-left: 5px;
+    padding-right: 35px;
+  }
+
+  select {
+    text-transform: capitalize;
+  }
+
+  div :global(.select-icon) {
+    position: absolute;
+    right: 8px;
   }
 </style>
 
@@ -55,32 +80,48 @@
 
 <section id="mods">
   <!-- This is the title for the curren section's step -->
-  <h1 id="step-title">Step {currentIndex + 1} - {currentCategory}</h1>
+  <h1 id="step-title">Step {currentStep + 1} - {modList[currentStep].name}</h1>
 
   <!-- This handles displaying all current mods in step or an exception otherwise -->
-  {#if filteredModList.length <= 0}
+  {#if modList[currentStep].hasOwnProperty('mods') && modList[currentStep].mods.length > 0}
+    {#each modList[currentStep].mods as mod, i}
+      <Mod modIndex={`${currentStep + 1}.${i + 1}`} {mod} {modInstructions} />
+    {/each}
+  {:else}
     <p>
       Oops, it looks like this step is empty. You've most likely found an error,
       please inform a team member!
     </p>
-  {:else}
-    {#each filteredModList as mod}
-      <Mod {mod} {modInstructions} />
-    {/each}
   {/if}
 
   <!-- This is the selection menu for navigating the steps -->
   <div id="step-controls">
-    <button class="item-block" on:click|preventDefault={prevStep}>back</button>
+    <button
+      class={classNames('clean-button item-block button-block-icon', {
+        'hide-button': isBeginning
+      })}
+      on:click|preventDefault={prevStep}>
+      <Icon icon={faAngleLeft} />
+    </button>
 
-    <select class="item-block" bind:value={currentCategory}>
-      {#each modCategories as category, i}
-        <option value={category}>{i + 1 + ' - ' + category}</option>
-      {/each}
-    </select>
+    <div class="select-wrapper select">
+      <select
+        class="clean-select item-block select-fix"
+        bind:value={currentStep}>
+        {#each modList as step, i}
+          <!-- TODO: css is used to capitalize active element but values in drop-down list aren't fixed -->
+          <option value={i}>{i + 1 + ' - ' + step.name}</option>
+        {/each}
+      </select>
+      <Icon class="select-icon" icon={faCaretDown} />
+    </div>
 
-    <button class="item-block" on:click|preventDefault={nextStep}>
-      forward
+    <button
+      class={classNames('clean-button item-block button-block-icon', {
+        'hide-button': isEnd
+      })}
+      on:click|preventDefault={nextStep}>
+      <Icon icon={faAngleRight} />
     </button>
   </div>
 </section>

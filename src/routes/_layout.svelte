@@ -20,6 +20,7 @@
     display: flex;
     justify-content: center;
     margin-right: 275px;
+    margin-top: 3rem;
     /*position: relative;*/
     /*max-width: 56em;*/
     background-color: white;

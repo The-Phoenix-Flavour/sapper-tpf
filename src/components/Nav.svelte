@@ -25,7 +25,7 @@
   <img src="img/logo.svg" alt="Docs" class="logo" />
 
   <!-- This is where the navlinks are generated -->
-  <ul class="clean-menu">
+  <ul class="clean-list">
     <!--
       <li>
         <a class:selected={segment === undefined} href=".">home</a>
