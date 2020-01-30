@@ -1,12 +1,14 @@
 <script>
   // Imports from packages
   import Icon from "fa-svelte";
-  import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown";
+  import {
+    faCaretDown,
+    faAngleLeft,
+    faAngleRight
+  } from "@fortawesome/free-solid-svg-icons";
   import classNames from "classnames";
 
   // Import Components
-  import { faAngleLeft } from "@fortawesome/free-solid-svg-icons/faAngleLeft";
-  import { faAngleRight } from "@fortawesome/free-solid-svg-icons/faAngleRight";
   import Mod from "../components/Mod.svelte";
 
   // Import Data
@@ -68,6 +70,7 @@
     text-transform: capitalize;
   }
 
+  /* FIXME: cleaner way to do this? put icon in div/span? */
   div :global(.select-icon) {
     position: absolute;
     right: 8px;
@@ -101,7 +104,7 @@
         'hide-button': isBeginning
       })}
       on:click|preventDefault={prevStep}>
-      <Icon icon={faAngleLeft} />
+      <Icon class="fix-icon" icon={faAngleLeft} />
     </button>
 
     <div class="select-wrapper select">
@@ -121,7 +124,7 @@
         'hide-button': isEnd
       })}
       on:click|preventDefault={nextStep}>
-      <Icon icon={faAngleRight} />
+      <Icon class="fix-icon" icon={faAngleRight} />
     </button>
   </div>
 </section>
