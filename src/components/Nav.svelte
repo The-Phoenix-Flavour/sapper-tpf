@@ -1,7 +1,6 @@
 <script>
   export let segment;
   import { navStructure } from "../../site_config.js";
-  import Routes from "../routes";
 </script>
 
 <style>
