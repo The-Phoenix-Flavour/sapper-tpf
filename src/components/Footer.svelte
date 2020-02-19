@@ -31,7 +31,7 @@
       rel="noopener noreferrer"
       class="clean-link"
       aria-label="MarceDev Website"
-      href="marce.dev">
+      href="https://www.marce.dev/">
       MarceDev
     </a>
   </p>

@@ -1,3 +1,7 @@
+# Live Demo
+
+View a live demo for the new website
+
 # Docs
 
 Path for editing where markdown is sourced under `src/routes/_posts.js` in the `contentPath` variable
