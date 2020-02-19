@@ -1,21 +1,38 @@
 import fs from 'fs';
-import path from 'path';
 import marked from 'marked';
 
-const contentPath = "content/pages"
+import { contentPath as defaultContentPath } from 'settings'
 
-export function getPosts () {
+import { readdirSyncRec } from "./fs.js"
+
+//FIXME: take this from settings, (has ot support arrays first)
+const fileType = ".md"
+
+
+export function getShallowPosts (contentPath = defaultContentPath) {
 	const slugs = fs.readdirSync(contentPath)
-		.filter(file => path.extname(file) === '.md')
-		.map(file => file.slice(0, -3));
+		.filter(file => path.extname(file) === fileType)
+		.map(file => file.slice(0, -fileType.length));
 
 	return slugs.map(getPost).sort((a, b) => {
 		return a.metadata.pubdate < b.metadata.pubdate ? 1 : -1;
 	});
 }
 
-export function getPost(slug) {
+export function getAllPosts (contentPath = defaultContentPath) {
+	const slugs = readdirSyncRec(contentPath)
+		.filter(file => path.extname(file) === fileType)
+		.map(file => file.substring(contentPath.length + 1).slice(0, -fileType.length))
+
+	return slugs.map(getPost).sort((a, b) => {
+		return a.metadata.pubdate < b.metadata.pubdate ? 1 : -1;
+	});
+}
+
+
+export function getPost(slug, contentPath = defaultContentPath) {
 	const file = `${contentPath}/${slug}.md`;
+
 	if (!fs.existsSync(file)) return null;
 
 	const markdown = fs.readFileSync(file, 'utf-8');
@@ -34,6 +51,8 @@ export function getPost(slug) {
 	};
 }
 
+// FIXME: make it so metadata isn't necessary?
+// Make metadata directly accessible instead of e.g. post.metadata.title?
 function process_markdown(markdown) {
 	const match = /---\n([\s\S]+?)\n---/.exec(markdown);
 	const frontMatter = match[1];

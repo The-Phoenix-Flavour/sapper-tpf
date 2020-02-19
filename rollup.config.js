@@ -7,6 +7,8 @@ import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
+import alias from '@rollup/plugin-alias';
+
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
@@ -73,7 +75,12 @@ export default {
 			resolve({
 				dedupe: ['svelte']
 			}),
-			commonjs()
+			commonjs(),
+			alias({
+				entries: [
+					{ find: 'settings', replacement: './settings.js' }
+				]
+			})
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives'))

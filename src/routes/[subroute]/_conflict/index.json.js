@@ -1,4 +1,4 @@
-import { getPosts } from './_posts.js';
+import { getAllPosts } from '../_posts';
 
 /*
 const contents = JSON.stringify(posts.map(post => {
@@ -12,9 +12,9 @@ const contents = JSON.stringify(posts.map(post => {
 let contents
 
 export function get(req, res) {
-	// Added
+	// TODO: Check production rule
 	if (!contents || process.env.NODE_ENV !== 'production') {
-		const posts = getPosts().map(post => ({
+		const posts = getAllPosts().map(post => ({
 			title: post.metadata.title,
 			slug: post.slug,
 			image: post.metadata.image

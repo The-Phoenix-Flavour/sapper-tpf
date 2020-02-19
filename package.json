@@ -1,7 +1,7 @@
 {
-  "name": "TODO",
-  "description": "TODO",
-  "version": "0.0.1",
+  "name": "ThePhoenixFlavour",
+  "description": "Official website for The Phoenix Flavour",
+  "version": "0.7.0",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
@@ -25,6 +25,7 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
+    "@rollup/plugin-alias": "^3.0.1",
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "@rollup/plugin-replace": "^2.2.0",

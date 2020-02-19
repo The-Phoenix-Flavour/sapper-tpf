@@ -1,6 +1,9 @@
 <script>
   import Title from "../components/Title.svelte";
   import Nav from "../components/Nav.svelte";
+  import Footer from "../components/Footer.svelte";
+
+  import { siteTitle, siteAuthor, SocialLinks, siteLogo } from "settings";
 
   // FIXME: integrate this CSS file properly
   import "../../static/common.css";
@@ -30,10 +33,13 @@
 </style>
 
 <div id="grid-wrapper">
-  <Title />
-  <Nav {segment} />
+  <Title {siteTitle} {SocialLinks} />
+  <Nav {segment} {siteLogo} />
 
   <main>
-    <slot />
+    <div>
+      <slot />
+    </div>
   </main>
 </div>
+<Footer {siteAuthor} />

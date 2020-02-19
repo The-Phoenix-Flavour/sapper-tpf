@@ -23,7 +23,7 @@
 }
 
 .fix-icon {
-  vertical-align: middle;
+  display: block !important;
 }
 
 /* Standard Styling */

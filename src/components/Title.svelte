@@ -1,11 +1,11 @@
 <script>
   import SocialMenu from "../components/SocialMenu.svelte";
-  import { title } from "../../site_config.js";
-  import { SocialLinks } from "../../site_config.js";
+
+  export let siteTitle, SocialLinks;
 </script>
 
 <style>
-  #site-title {
+  #title-bar {
     grid-column: 1/3;
     display: grid;
     grid-auto-flow: column;
@@ -17,11 +17,12 @@
     color: #fff;
   }
 
-  h1 {
+  #title {
     grid-column-start: 2;
     justify-self: center;
     padding: 0;
     margin: 0;
+    text-transform: capitalize;
   }
 
   #social-menu {
@@ -31,8 +32,8 @@
   }
 </style>
 
-<div id="site-title">
-  <h1>{title}</h1>
+<div id="title-bar">
+  <h1 id="title">{siteTitle}</h1>
 
   <div id="social-menu">
     <SocialMenu socials={SocialLinks} />
