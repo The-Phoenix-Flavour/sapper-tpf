@@ -13,8 +13,8 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    background-color: #557287;
-    color: #fff;
+    background-color: var(--theme-primary);
+    color: var(--theme-title-color);
   }
 
   #title {

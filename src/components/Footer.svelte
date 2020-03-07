@@ -8,17 +8,18 @@
   #footer {
     position: absolute;
     bottom: 0;
-    background-color: #f9f9f9;
+    background-color: var(--theme-secondary-dark);
     margin: 1.5rem 0 1.5rem 2rem;
   }
 
   p {
     padding: 0;
     margin: 0;
+    color: var(--theme-footer-text-color);
   }
 
   a {
-    color: #557287;
+    color: var(--theme-primary);
   }
 </style>
 

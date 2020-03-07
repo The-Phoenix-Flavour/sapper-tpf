@@ -1,26 +1,38 @@
+<script context="module">
+  export function preload({ params, query }) {
+    return this.fetch(`Nav.json`)
+      .then(r => r.json())
+      .then(paths => {
+        return { paths };
+      });
+  }
+</script>
+
 <script>
-  import { getRootPaths, getSmartNestedPaths } from "../util/paths.js";
+  //import { getRootPaths, getSmartNestedPaths } from "../util/paths.js";
+
+  //console.log(JSON.stringify(getRootPaths().concat(getSmartNestedPaths())));
+
   import { isObject, alphaNumSort } from "../util/misc.js";
 
-  const dynamicPaths = getRootPaths().concat(getSmartNestedPaths());
-
-  export let segment, siteLogo;
+  export let segment, paths, siteLogo;
+  console.log("Paths: " + paths);
 </script>
 
 <style>
   #side-menu {
-    background-color: #f9f9f9;
+    background-color: var(--theme-secondary-dark);
     text-align: center;
   }
 
   ul {
-    border-top: 1px solid grey;
+    border-top: 1px solid var(--theme-nav-divider-color);
   }
 
   li {
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--theme-nav-divider-color);
   }
 
   a {
@@ -28,6 +40,7 @@
     padding: 0 0.5em;
     display: block;
     text-transform: capitalize;
+    color: var(--theme-nav-link-color);
   }
 
   img {
@@ -52,8 +65,12 @@
       </li>
     {/if}
 
+    <li>
+      <a class:selected={segment === undefined} href="modding">modding</a>
+    </li>
+
     <!-- Generates dynamic paths for Markdown files -->
-    {#each dynamicPaths as path}
+    <!--{#each dynamicPaths as path}
       <li>
         {#if isObject(path)}
           <a
@@ -66,6 +83,6 @@
           <a class:selected={segment == path} href={path}>{path}</a>
         {/if}
       </li>
-    {/each}
+    {/each}-->
   </ul>
 </div>

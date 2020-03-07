@@ -39,3 +39,5 @@
 </svelte:head>
 
 <h1>Landing Page</h1>
+
+<button on:click|preventDefault={() => console.log('Test')}>Test Me</button>

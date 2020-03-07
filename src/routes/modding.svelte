@@ -11,6 +11,9 @@
   // Import Components
   import Mod from "../components/Mod.svelte";
 
+  // Import Functions
+  import { capitalize } from "../util/misc.js";
+
   // Import Data
   import { modInstructions } from "../../content/mod_config.js";
   import { modList } from "../../content/mod_data.js";
@@ -66,10 +69,6 @@
     padding-right: 35px;
   }
 
-  select {
-    text-transform: capitalize;
-  }
-
   /* FIXME: cleaner way to do this? put icon in div/span? */
   div :global(.select-icon) {
     position: absolute;
@@ -82,6 +81,7 @@
 </svelte:head>
 
 <section id="mods">
+  <p>{currentStep}</p>
   <!-- This is the title for the curren section's step -->
   <h1 id="step-title">Step {currentStep + 1} - {modList[currentStep].name}</h1>
 
@@ -92,8 +92,8 @@
     {/each}
   {:else}
     <p>
-      Oops, it looks like this step is empty. You've most likely found an error,
-      please inform a team member!
+      Oops, it looks like this step is empty. You've most likely encountered an
+      error, please inform a team member!
     </p>
   {/if}
 
@@ -112,8 +112,8 @@
         class="clean-select item-block select-fix"
         bind:value={currentStep}>
         {#each modList as step, i}
-          <!-- TODO: css is used to capitalize active element but values in drop-down list aren't fixed -->
-          <option value={i}>{i + 1 + ' - ' + step.name}</option>
+          <!-- TODO: svg arrow isn't part of clickable element -->
+          <option value={i}>{i + 1 + ' - ' + capitalize(step.name)}</option>
         {/each}
       </select>
       <Icon class="select-icon" icon={faCaretDown} />

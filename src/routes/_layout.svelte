@@ -3,10 +3,14 @@
   import Nav from "../components/Nav.svelte";
   import Footer from "../components/Footer.svelte";
 
+  //import { dynamicPaths } from "./stores.js";
+  //console.log(dynamicPaths);
+
   import { siteTitle, siteAuthor, SocialLinks, siteLogo } from "settings";
 
   // FIXME: integrate this CSS file properly
   import "../../static/common.css";
+  import "../../static/theme.css";
 
   export let segment;
 </script>
@@ -26,7 +30,7 @@
     margin-top: 3rem;
     /*position: relative;*/
     /*max-width: 56em;*/
-    background-color: white;
+    background-color: var(--theme-secondary);
     /*padding: 2em;*/
     /*box-sizing: border-box;*/
   }

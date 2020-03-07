@@ -1,6 +1,6 @@
 # Live Demo
 
-View a live demo for the new website
+View a [live demo](https://nervous-leavitt-3faf57.netlify.com/mod%20installation/getting%20started/) for the new website
 
 # Docs
 

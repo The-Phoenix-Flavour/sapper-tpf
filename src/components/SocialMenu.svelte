@@ -5,7 +5,7 @@
   export let socials;
 
   //TODO: make cleaner anonymous function? => ()
-  //TODO: let function use dot operator e.g. social.valiateProps()
+  //TODO: let function use function chaining e.g. social.valiateProps()
   function validateProps(item) {
     let flag = false;
 
@@ -34,6 +34,7 @@
   a {
     display: block;
     text-align: center;
+    color: var(--theme-social-icon-color);
   }
 
   .icon {

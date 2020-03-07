@@ -1,0 +1,29 @@
+:root {
+  /*** Main Theme CSS ***/
+
+  --theme-primary: #557287;
+
+  --theme-secondary: white;
+  --theme-secondary-dark: #f9f9f9;
+
+  --theme-text-dark: black;
+
+  /*** Sub-theme CSS ***/
+
+  /* SocialMenu.svelte Component */
+  /* SocialMenu.svelte is used inside of Title.svelte */
+  --theme-social-icon-color: var(--theme-secondary);
+
+  /* Title.svelte Component */
+  /* Title.svelte is used inside of _layout.svelte */
+  --theme-title-color: var(--theme-secondary);
+
+  /* Nav.svelte Component */
+  /* Nav.svelte is used in _layout.svelte */
+  --theme-nav-link-color: var(--theme-text-dark);
+  --theme-nav-divider-color: grey;
+
+  /* Footer.svelte Component */
+  /* Footer.svelte is used in _layout.svelte */
+  --theme-footer-text-color: var(--theme-text-dark);
+}

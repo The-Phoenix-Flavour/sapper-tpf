@@ -38,7 +38,7 @@
 
 .item-block {
   padding: 1rem;
-  border-radius: 3px;
+  border-radius: 6px;
   box-shadow: rgba(46, 41, 51, 0.08) 0px 2px 4px,
     rgba(71, 63, 79, 0.08) 0px 2px 4px;
   background-color: lightblue;
@@ -47,12 +47,9 @@
 .button-block-icon {
   cursor: pointer;
   display: block;
-  /* TODO: remove if not needed
-  display: flex;
-  align-items: center;*/
   font-size: 20px;
   /* calc should be desired padding - (global font size - icon font size) */
   /* FIXME: fix this weird hack */
   padding-top: calc(1rem - 10px);
-  padding-bottom: calc(1rem - 5px);
+  padding-bottom: calc(1rem - 10px);
 }

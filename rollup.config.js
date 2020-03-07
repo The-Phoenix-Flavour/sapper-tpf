@@ -34,6 +34,11 @@ export default {
 				dedupe: ['svelte']
 			}),
 			commonjs(),
+			alias({
+				entries: [
+					{ find: 'settings', replacement: './settings.js' }
+				]
+			}),
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],

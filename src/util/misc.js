@@ -6,3 +6,7 @@ export function isObject(val) {
 export function alphaNumSort(a, b) {
  return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'})
 }
+
+export function capitalize(string) {
+  return string && string.charAt(0).toUpperCase() + string.slice(1)
+}
