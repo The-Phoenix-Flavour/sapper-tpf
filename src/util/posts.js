@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path'
 import marked from 'marked';
 
 import { contentPath as defaultContentPath } from 'settings'
@@ -14,7 +15,7 @@ export function getShallowPosts (contentPath = defaultContentPath) {
 		.filter(file => path.extname(file) === fileType)
 		.map(file => file.slice(0, -fileType.length));
 
-	return slugs.map(getPost).sort((a, b) => {
+	return slugs.map(slug => getPost(slug, contentPath)).sort((a, b) => {
 		return a.metadata.pubdate < b.metadata.pubdate ? 1 : -1;
 	});
 }
@@ -24,7 +25,7 @@ export function getAllPosts (contentPath = defaultContentPath) {
 		.filter(file => path.extname(file) === fileType)
 		.map(file => file.substring(contentPath.length + 1).slice(0, -fileType.length))
 
-	return slugs.map(getPost).sort((a, b) => {
+	return slugs.map(slug => getPost(slug, contentPath)).sort((a, b) => {
 		return a.metadata.pubdate < b.metadata.pubdate ? 1 : -1;
 	});
 }

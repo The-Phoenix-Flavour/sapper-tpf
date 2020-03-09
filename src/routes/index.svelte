@@ -1,3 +1,21 @@
+<script context="module">
+  export function preload({ params, query }) {
+    return this.fetch(`index.json`)
+      .then(r => r.json())
+      .then(paths => {
+        return { paths };
+      });
+  }
+</script>
+
+<script>
+  export let paths;
+
+  import { dynamicPaths } from "../store.js";
+
+  dynamicPaths.set(paths);
+</script>
+
 <style>
   h1,
   figure,
@@ -39,5 +57,3 @@
 </svelte:head>
 
 <h1>Landing Page</h1>
-
-<button on:click|preventDefault={() => console.log('Test')}>Test Me</button>

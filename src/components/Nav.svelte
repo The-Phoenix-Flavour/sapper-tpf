@@ -1,22 +1,8 @@
-<script context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`Nav.json`)
-      .then(r => r.json())
-      .then(paths => {
-        return { paths };
-      });
-  }
-</script>
-
 <script>
-  //import { getRootPaths, getSmartNestedPaths } from "../util/paths.js";
+  import { isObject } from "../util/misc.js";
+  import { dynamicPaths } from "../store.js";
 
-  //console.log(JSON.stringify(getRootPaths().concat(getSmartNestedPaths())));
-
-  import { isObject, alphaNumSort } from "../util/misc.js";
-
-  export let segment, paths, siteLogo;
-  console.log("Paths: " + paths);
+  export let segment, siteLogo;
 </script>
 
 <style>
@@ -70,7 +56,7 @@
     </li>
 
     <!-- Generates dynamic paths for Markdown files -->
-    <!--{#each dynamicPaths as path}
+    {#each $dynamicPaths as path}
       <li>
         {#if isObject(path)}
           <a
@@ -83,6 +69,6 @@
           <a class:selected={segment == path} href={path}>{path}</a>
         {/if}
       </li>
-    {/each}-->
+    {/each}
   </ul>
 </div>
