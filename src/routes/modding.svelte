@@ -35,45 +35,38 @@
   }
 </script>
 
-<style>
-  #step-title {
+<style lang="sass">
+  #step-title
     text-align: center;
     text-transform: capitalize;
-  }
 
-  #step-controls {
+  #step-controls
     margin-top: 4.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
 
-  /* Workround for browsers that don't have the gap property */
-  /* TODO: make this a rollback only if browser doesn't suppoer gap */
-  #step-controls > * + * {
+  // Workround for browsers that don't have the gap property
+  // TODO: make this a rollback only if browser doesn't suppoer gap
+  #step-controls > * + *
     margin-left: 1.5rem;
-  }
 
-  .hide-button {
+  .hide-button
     visibility: hidden;
-  }
 
-  .select-wrapper {
+  .select-wrapper
     display: flex;
     align-items: center;
     position: relative;
-  }
 
-  .select-fix {
+  .select-fix
     padding-left: 5px;
     padding-right: 35px;
-  }
 
-  /* FIXME: cleaner way to do this? put icon in div/span? */
-  div :global(.select-icon) {
+  //FIXME: cleaner way to do this? put icon in div/span?
+  div :global(.select-icon)
     position: absolute;
     right: 8px;
-  }
 </style>
 
 <svelte:head>
@@ -81,7 +74,6 @@
 </svelte:head>
 
 <section id="mods">
-  <p>{currentStep}</p>
   <!-- This is the title for the curren section's step -->
   <h1 id="step-title">Step {currentStep + 1} - {modList[currentStep].name}</h1>
 

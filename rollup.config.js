@@ -7,7 +7,26 @@ import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
+import sveltePreprocess from 'svelte-preprocess';
 import alias from '@rollup/plugin-alias';
+
+const preprocess = sveltePreprocess({
+  scss: {
+    includePaths: ['src'],
+	},
+	sass: {
+    includePaths: ['src'],
+  },
+  postcss: {
+    plugins: [require('autoprefixer')],
+  },
+});
+
+const aliases = alias({
+	entries: [
+		{ find: 'settings', replacement: './settings.js' }
+	]
+})
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -27,18 +46,15 @@ export default {
 			svelte({
 				dev,
 				hydratable: true,
-				emitCss: true
+				emitCss: true,
+				preprocess
 			}),
 			resolve({
 				browser: true,
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-			alias({
-				entries: [
-					{ find: 'settings', replacement: './settings.js' }
-				]
-			}),
+			aliases,
 
 			legacy && babel({
 				extensions: ['.js', '.mjs', '.html', '.svelte'],
@@ -75,17 +91,14 @@ export default {
 			}),
 			svelte({
 				generate: 'ssr',
-				dev
+				dev,
+				preprocess
 			}),
 			resolve({
 				dedupe: ['svelte']
 			}),
 			commonjs(),
-			alias({
-				entries: [
-					{ find: 'settings', replacement: './settings.js' }
-				]
-			})
+			aliases
 		],
 		external: Object.keys(pkg.dependencies).concat(
 			require('module').builtinModules || Object.keys(process.binding('natives'))
