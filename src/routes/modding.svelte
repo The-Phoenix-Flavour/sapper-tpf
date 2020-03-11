@@ -8,8 +8,7 @@
   import PageNav from "../components/PageNav.svelte";
 
   // Import Data
-  import { modInstructions } from "../../content/mod_config.js";
-  import { modList } from "../../content/mod_data.js";
+  import { modList } from "../../content/mod_lists.js";
 
   let pageList = modList.map((modType, index) => ({
     name: modType.name,
@@ -35,12 +34,12 @@
 
 <section id="mods">
   <!-- This is the title for the curren section's step -->
-  <h1 id="step-title">Step {$currentStep + 1} - {modList[$currentStep].name}</h1>
+  <h1 id="step-title">Step {$currentStep + 1} - {modList[$currentStep].category}</h1>
 
   <!-- This handles displaying all current mods in step or an exception otherwise -->
   {#if modList[$currentStep].hasOwnProperty('mods') && modList[$currentStep].mods.length > 0}
     {#each modList[$currentStep].mods as mod, i}
-      <Mod modIndex={`${$currentStep + 1}.${i + 1}`} {mod} {modInstructions} />
+      <Mod {mod} modIndex={`${$currentStep + 1}.${i + 1}`} />
     {/each}
   {:else}
     <p>

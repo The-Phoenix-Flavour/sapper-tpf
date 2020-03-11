@@ -76,7 +76,7 @@
   </button>
 
   <div class="select-wrapper select">
-    <select class="clean-select item-block select-fix" bind:value={currentStep}>
+    <select class="clean-select item-block select-fix" bind:value={$currentStep}>
       {#each pageList as page, i}
         <!-- FIXME: svg arrow isn't part of clickable element-->
         <option value={i}>{i + 1 + ' - ' + capitalize(page.name)}</option>

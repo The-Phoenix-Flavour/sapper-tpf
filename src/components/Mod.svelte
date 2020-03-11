@@ -1,5 +1,5 @@
 <script>
-  export let modIndex, mod, modInstructions;
+  export let mod, modIndex;
 </script>
 
 <style>
@@ -25,20 +25,19 @@
     </a>
   </h2>
 
-  {#each modInstructions as instructionSet}
+  {#each Object.entries(mod.instructions) as instructionSet}
     <!-- Adds any instruction categories associated with the mod -->
-    {#if instructionSet in mod}
-      <h3 id="mod-title">{instructionSet} instructions</h3>
-      <ul>
-        {#if Array.isArray(mod[instructionSet])}
-          {#each mod[instructionSet] as instruction}
-            <li>{instruction}</li>
-          {/each}
-        {:else}
-          <li>{mod[instructionSet]}</li>
-        {/if}
-      </ul>
-    {/if}
+    <h3 id="mod-title">{instructionSet[0]} instructions</h3>
+
+    <ul>
+      {#if Array.isArray(instructionSet[1])}
+        {#each instructionSet[1] as instruction}
+          <li>{instruction}</li>
+        {/each}
+      {:else}
+        <li>{instructionSet[1]}</li>
+      {/if}
+    </ul>
   {/each}
 
 </div>

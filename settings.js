@@ -11,12 +11,13 @@ export const siteLogo = "Favicon.png"
 
 // ____ Social ____
 
-/* Title menu items will become red if name or url is missing as these are critical items
-   even items using icons should have a name */
+/*
+  NOTE: Title menu items will become red if name or url is missing as these are critical,
+  items even for items already  using icons should have a name
+*/
+
+// If no icon is provided the name will be used
    export const SocialLinks = [
-    {
-      name: "WABBAJACK",
-    },
 
     {
       name: "patreon",
@@ -41,5 +42,4 @@ export const siteLogo = "Favicon.png"
 
 // This is where the sites content is generated from
 export const contentPath = "content"
-
 export const fileType = ".md"
