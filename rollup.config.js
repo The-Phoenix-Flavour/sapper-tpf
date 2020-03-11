@@ -7,8 +7,36 @@ import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
+import fs from 'fs';
+import sass from 'node-sass';
+import postcss from 'postcss';
+
 import sveltePreprocess from 'svelte-preprocess';
 import alias from '@rollup/plugin-alias';
+
+// CSS Settings
+const css_global_in = './src/styles/global.scss'
+const css_global_out = './static/global_bundle.css'
+
+sass.render({
+	file: css_global_in,
+	outFile: css_global_out,
+}, function (error, result) {
+	if(!error) {
+		postcss([
+			require('autoprefixer'),
+			require('cssnano')({preset: 'default'})
+		])
+		.process(result.css, {
+			from: css_global_out,
+			to: css_global_out
+		}).then(result =>
+			fs.writeFile(css_global_out, result.css, function (err) {
+				if(err) console.log(err);
+			})
+		)
+	} else console.log(err);
+})
 
 const preprocess = sveltePreprocess({
   scss: {
@@ -18,16 +46,21 @@ const preprocess = sveltePreprocess({
     includePaths: ['src'],
   },
   postcss: {
-    plugins: [require('autoprefixer')],
+    plugins: [
+			require('autoprefixer'),
+			require('cssnano')({preset: 'default'})
+		],
   },
 });
 
+// Aliases
 const aliases = alias({
 	entries: [
 		{ find: 'settings', replacement: './settings.js' }
 	]
 })
 
+// Svelte/Sapper Settings
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
